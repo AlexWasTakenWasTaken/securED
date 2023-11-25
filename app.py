@@ -77,9 +77,27 @@ def get_feedback(class_id, assignment_id, file_id):
         for l in lines:
             s += (l + "\n")
 
-        print(s)
         feedback = openai_feedback(s)
-    return render_template("feedback.html", feedback=feedback)
+    return render_template("feedback.html", feedback=feedback, title="Feedback")
+
+
+@app.route('/course-<string:class_id>/assignment-<string:assignment_id>/feedback/<int:file_id>', methods=['POST'])
+@login_required
+def ai_detection(class_id, assignment_id, file_id):
+    f = get_file(file_id, Upload)
+    if (f is not None and f.user_id == current().id):
+        s = ""
+        path = f'{f.filepath}\\{f.filename}'
+        decrypt(key, path, f.filename)
+        f = open(f.filename, 'r')
+        lines = f.readlines()
+
+        for l in lines:
+            s += (l + "\n")
+
+        detection = openai_detection(s)
+    return render_template("feedback.html", feedback=detection, title="AI Detection")
+ 
 
 # Delete an upload to an assignment.
 @app.route('/course-<string:class_id>/assignment-<string:assignment_id>/delete_upload/<int:file_id>', methods=['POST'])

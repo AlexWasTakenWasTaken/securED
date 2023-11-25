@@ -20,6 +20,10 @@
                     <form action="{{ url_for('get_feedback', class_id=course.class_id, assignment_id=assignment.id, file_id=file.id)}}" method="post">
                         <input type="submit" value="Feedback">
                     </form>
+                    <form action="{{ url_for('ai_detection', class_id=course.class_id, assignment_id=assignment.id, file_id=file.id)}}" method="post">
+                        <input type="submit" value="AI Detection">
+                    </form>
+
                 </div>
                 {% endif %}
             </li>
