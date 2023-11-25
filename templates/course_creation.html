@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<head><title>Create Course</title></head>
+<div>
+    <form method="POST">
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title">
+        </div>
+        <div>
+            <label for="desc">Description (Optional):</label>
+            <input type="text" name="desc" id="desc">
+        </div>
+        <button class="btn" type="submit">Create</button>
+    </form>
+</div>
+{% endblock %}

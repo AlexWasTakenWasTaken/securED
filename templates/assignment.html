@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<head><title>Assignment: {{ assignment.title }}</title></head>
+<h1>Assignment: {{ assignment.title }}</h1>
+<p class="assignment-due">Due: {{ assignment.due_date.date() }}, Weight: {{ assignment.weight }} </p>
+
+<p class="assignment-description"> <strong>Description</strong>: {{ assignment.description }} </p>
+
+{% if user.username != course.instructor.username %}
+    <ul class="file-list">
+        {% for file in files %}
+            <li class="file-upload">
+                <span class="file-name"><a href="{{ url_for('download_file', file_id=file.id)}}"> {{ file.filename }} </a></span>
+                <span style="float: right" class="file-creation" target="_blank">{{ file.upload_date.replace(microsecond=0)}}</span>
+                {% if not submitted %}
+                <div class="button-container">
+                    <form action="{{ url_for('delete_upload', class_id=course.class_id, assignment_id=assignment.id, file_id=file.id)}}" method="post">
+                        <button class="btn" type="submit">Delete</button>
+                    </form>
+                    <form action="{{ url_for('get_feedback', class_id=course.class_id, assignment_id=assignment.id, file_id=file.id)}}" method="post">
+                        <input type="submit" value="Feedback">
+                    </form>
+                </div>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    {% if not submitted %}
+        <form action="/course-{{ course.class_id }}/assignment-{{ assignment.id }}/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="submit" value="Upload">
+        </form>
+    {% endif %}
+
+    {% if not submitted %}
+    <form action="{{ url_for('submit_assignment', class_id=course.class_id, assignment_id=assignment.id) }}" method="post">
+        <input type="submit" value="Submit">
+    </form>
+    {% else %}
+    <form action="{{ url_for('unsubmit_assignment', class_id=course.class_id, assignment_id=assignment.id)}}" method="post">
+        <input type="submit" value="Unsubmit">
+    </form>
+    {% endif %}
+{% else %}
+<ul class="user-list">
+    {% for user in course.participants %}
+        <li class="user-item">User: {{ user.username }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+{% endblock %}

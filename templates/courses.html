@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<head><title>Courses</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></head>
+{% if data.status %}
+<h1>All Courses</h1>
+    {% for course in courses %}
+        <a class="block-hyperlink" href="course-{{ course.class_id }}">
+            <div class="course-block">
+                <h1 class="course-title"> Course: {{ course.title }} </h1>
+                <h2 class="course-description"> Description: {{ course.desc }} </h2>
+                {% if course.instructor.username == user %}
+                    <h2 class="course-instructor"> Creator: {{ course.instructor }} (<strong>You</strong>) </h2>
+                {% else %}
+                    <h2 class="course-instructor"> Creator: {{ course.instructor }} </h2>
+                {% endif %} 
+
+                <div class="button-container">
+                    {% if course.instructor.username == user %}
+                        <form action="{{ url_for('delete_course', course_id=course.id) }}" method="post">
+                            <button class="btn" type="submit">Delete</button>
+                        </form>
+                    {% endif %}
+                    <button class="course-code btn" onclick="copyLink('linkToCopy{{ course.class_id }}')">Course Invite Code: {{ course.class_id }}</button>
+                    <input type="text" value="{{ course.class_id }}" id="linkToCopy{{ course.class_id }}" style="position: absolute; left: -9999px;">
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    <a href="{{ url_for('create')}}" class="redirect-button"> <i class="fas fa-plus"></i> Create Class </a>
+    <button class="redirect-button" id="openFormButton"><i class="fas fa-plus"></i>Enroll</button>
+
+    <div id="popupForm" class="popup-form" style="display: none;">
+        <form action="/enroll" method="post">
+            <input name="id" type="text" placeholder="Course Code">
+            <button type="submit">Enroll</button>
+        </form>
+    </div>
+{% else %}
+<h1>Welcome!</h1>
+<p> Please <a href="{{ url_for('signup') }}">signup</a> or <a href="{{ url_for('login') }}">login</a> to continue.</p>
+{% endif %}
+
+<script>
+    function copyLink(input) {
+        var text = document.getElementById(input);
+        text.select();
+        document.execCommand('copy');
+    }
+
+    document.getElementById('openFormButton').addEventListener('click', function() {
+        var form = document.getElementById('popupForm');
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    });
+
+</script>
+{% endblock %}

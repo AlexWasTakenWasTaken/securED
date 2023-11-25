@@ -1,0 +1,323 @@
+html {
+    font: 18px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color: #444;
+}
+
+main {
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 0 10px;
+}
+
+h1, h2, h3 {
+    line-height: 1.2;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        color: #c9d1d9;
+        background: #0d1117;
+    }
+    a:link {
+        color: #58a6ff;
+    }
+    a:visited {
+        color: #8e96f0;
+    }
+}
+
+.form-container {
+    width: 300px; /* Adjust the width as needed */
+    margin: auto; /* Center the form in the page */
+    padding: 20px;
+    background-color: #f3f3f3; /* Background color of the form */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow to the form */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%; /* Full width */
+    padding: 10px; /* Spacing inside the input */
+    margin: 10px 0; /* Space between inputs */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 4px; /* Rounded corners for inputs */
+}
+
+input[type="submit"] {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding inside the button */
+    border: none; /* No border */
+    background-color: #007bff; /* Background color */
+    color: white; /* Text color */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Additional styling for form elements */
+input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.right-anchor {
+    float: right;
+}
+
+.navbar {
+    overflow: hidden;
+    border-bottom: 1px solid black; 
+}
+
+.navbar a {
+    text-decoration: none;
+}
+
+.navbar p {
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 4px 10px;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.course-block {
+    background-color: #f9f9f9; /* Light background for the block */
+    border: 1px solid #ddd; /* A subtle border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 15px; /* Spacing inside the block */
+    margin-bottom: 15px; /* Space between course blocks if there are multiple */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for depth */
+}
+
+.course-block:hover {
+    background-color: #ddd;
+}
+
+.course-title {
+    margin-top: 0;
+    color: #333; /* Dark color for the title */
+    font-size: 1.2em; /* Slightly larger font size for the title */
+}
+
+.course-instructor,
+.course-code,
+.course-description {
+    margin: 5px 0;
+    color: #666; /* A lighter color for less emphasis */
+    font-size: 0.9em; /* Smaller font size */
+    display: block;
+}
+
+.button-container {
+    text-align: center; /* Align buttons to the center of the container */
+    padding: 10px; /* Add some padding around the buttons */
+}
+
+.btn {
+    padding: 10px 20px; /* Add padding inside the buttons */
+    margin: 0 5px; /* Add margin between the buttons */
+    border: 1px solid #ddd; /* Add a border to the buttons */
+    border-radius: 4px; /* Optional: Round the corners of the buttons */
+    background-color: #f4f4f4; /* Light gray background */
+    cursor: pointer; /* Change cursor to indicate button */
+}
+
+.btn:hover {
+    background-color: #e9e9e9; /* Slightly darker background on hover */
+}
+
+.redirect-button {
+    display: inline-block; /* Aligns the icon and text */
+    padding: 10px 15px; /* Padding inside the button */
+    background-color: #007bff; /* Background color */
+    color: white; /* Text color */
+    text-decoration: none; /* Removes underline from link */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.redirect-button:hover {
+    background-color: #0056b3; /* Darker background on hover */
+}
+
+.redirect-button i {
+    margin-right: 5px; /* Space between icon and text */
+}
+
+.popup-form {
+    /* Styles for the popup form */
+    position: fixed; /* Fixed position */
+    left: 50%; /* Center the form horizontally */
+    top: 50%; /* Center the form vertically */
+    transform: translate(-50%, -50%); /* Adjust the position to center */
+    border: 1px solid #ddd;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.block-hyperlink {
+    text-decoration: none;
+}
+
+/* Style for all input elements of type 'date' */
+input[type="date"] {
+    background-color: #f8f8f8; /* Light grey background */
+    border: 1px solid #ddd; /* Light grey border */
+    padding: 8px; /* Padding inside the input */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    line-height: 1.5; /* Line height */
+    color: #333; /* Text color */
+    cursor: pointer; /* Cursor changes to a pointer */
+}
+
+input[type="date"]:hover {
+    border-color: #ccc; /* Darker border on hover */
+}
+
+input[type="date"]:focus {
+    outline: none; /* Removes the default focus outline */
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1); /* Adds a blue glow effect */
+    border: 1px solid #66afe9; /* Blue border on focus */
+}
+
+input[type="number"] {
+    width: 100px; /* Width of the input field */
+    padding: 8px; /* Padding inside the input */
+    margin: 10px 0; /* Margin around the input */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"]:focus {
+    outline: none; /* Removes the default focus outline */
+    border-color: #4A90E2; /* Blue border for focus */
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5); /* Adds a subtle glow effect */
+}
+
+.assignment-block {
+    background-color: #f9f9f9; /* Light background for the block */
+    border: 1px solid #ddd; /* A subtle border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 15px; /* Spacing inside the block */
+    margin-bottom: 15px; /* Space between course blocks if there are multiple */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for depth */
+}
+
+.assignment-block:hover {
+    background-color: #ddd;
+}
+
+.assignment-title {
+    margin-top: 0;
+    color: #333; /* Dark color for the title */
+    font-size: 1.2em; /* Slightly larger font size for the title */
+}
+
+.assignment-desc,
+.assignment-weight,
+.assignment-date {
+    margin: 5px 0;
+    color: #666; /* A lighter color for less emphasis */
+    font-size: 0.9em; /* Smaller font size */
+    display: block;
+}
+
+.assignment-hyperlink {
+    text-decoration: none;
+}
+
+.assignment-due {
+    font-size: 0.8em;
+    display: block;
+}
+
+.file-upload-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+.file-upload-btn:hover {
+    background-color: #0056b3;
+}
+
+
+.file-list {
+    list-style: none;
+    padding: 0;
+}
+
+.file-list li {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.file-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.download-link {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-top: 8px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.download-link:hover {
+    background-color: #0056b3;
+}
+
+.user-list {
+    list-style: none;
+    padding: 0;
+}
+
+.user-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<head><title>Course {{ course.title }}</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></head>
+{% if authorized %}
+<h1> Course: {{ course.title }} </h1>
+
+{% for assignment in course.assignments %}
+<a class="assignment-hyperlink"  href="/course-{{ course.class_id}}/assignment-{{ assignment.id }}">
+    <div class="assignment-block">
+        <h1 class="assignment-title"> Assignment: {{ assignment.title }}</h1>
+        <h2 class="assignment-desc"> Description: {{ assignment.description }} </h2>
+        <p class="assignment-weight"> Weight: {{ assignment.weight }} </p>
+        <p class="assignment-date"> {{ assignment.release_date.date() }} to {{ assignment.due_date.date() }} </p> 
+        <div class="button-container">
+            {% if course.instructor.username == user.username %}
+                <form action="{{ url_for('delete_assignment', class_id=course.class_id, assignment_id=assignment.id) }}" method="post">
+                    <button class="btn" type="submit">Delete</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</a>
+{% endfor %}
+
+{% if course.instructor.username == user.username %}
+<button class="redirect-button" id="assignmentForm"><i class="fas fa-plus"></i>Create Assignment</button>
+
+<div id="assignmentPopup" class="popup-form" style="display: none;">
+    <form action="/course-{{ course.class_id }}/create_assignment" method="post">
+        <input type="text" name="title" placeholder="Title"> 
+        <input type="text" name="description" placeholder="Description">
+        <input type="number" name="weight" placeholder="Weight">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="start">
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="end">
+        <button type="submit"> Create Assignment</button>
+    </form>
+</div>
+{% endif %}
+{% else %}
+<h1> You don't have access to this course! </h1>
+{% endif %}
+
+<script>
+    document.getElementById("assignmentForm").addEventListener('click', function() {
+        var form = document.getElementById("assignmentPopup");
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    })
+
+    window.onload = function() {
+        var today = new Date();
+        var day = today.getUTCDate(), month = today.getUTCMonth() + 1, year = today.getUTCFullYear();
+        var str_today = `${year}-${month}-${day}`
+        console.log(str_today);
+        document.getElementById("startDate").value = str_today;
+        document.getElementById("endDate").value = str_today;
+    }
+</script>
+{% endblock %}
